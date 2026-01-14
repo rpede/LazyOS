@@ -10,7 +10,35 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+dnf5 install -y --setopt=install_weak_deps=False \
+  zsh zoxide fzf eza bat neovim \
+  yazi btop zellij ripgrep golang-github-jesseduffield-lazygit tree-sitter-cli \
+  lightdm lightdm-gtk niri noctalia-shell ghostty \
+  cava \
+  cliphist \
+  ddcutil \
+  eza-zsh-completion \
+  fontawesome-6-brands-fonts \
+  fontawesome-6-free-fonts \
+  gcc \
+  ghostty-bat-syntax \
+  ghostty-neovim \
+  ghostty-shell-integration \
+  ghostty-vim \
+  ghostty-zsh-completion \
+  gnome-keyring \
+  gstreamer1-plugins-good-qt6 \
+  inotify-tools \
+  lsb_release \
+  matugen \
+  qt6-qttranslations \
+  wlsunset \
+  xdg-desktop-portal-gnome
+#rocm-smi \
+#power-profiles-daemon \
+
+useradd -m -G wheel -s /bin/zsh lazy -p lazy
 
 # Use a COPR Example:
 #
